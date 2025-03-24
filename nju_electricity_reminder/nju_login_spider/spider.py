@@ -38,6 +38,8 @@ def login(username: str, password: str, to_url: str) -> requests.sessions.Sessio
     for _ in range(3):
         try:
             data["captchaResponse"] = getCaptcha(username)
+            print(data)
+            print(data["captchaResponse"])
             session.post(url=url, params=params, data=data)
             if session.cookies.get("MOD_AUTH_CAS") or session.cookies.get("JSESSIONID"):
                 return session
